@@ -32,6 +32,11 @@
 		</form>
 	</div>
 
+<h1> 
+	<a href = "${pageContext.request.contextPath}/loadCreateANewAccountPage.html">
+	Create a New Account 
+	 </a>
+	 </h1>
 </body>
 
 </html>

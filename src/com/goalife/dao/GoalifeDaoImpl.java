@@ -10,17 +10,17 @@ import com.goalife.model.User;
 public class GoalifeDaoImpl implements GoalifeDao{ 
 	private DataSource dataSource;
 	private JdbcTemplate jdbcTemplate;
-	private static final String VALIDATE_EXISTING_USER = "SELECT COUNT(*) FROM users WHERE username = ? and password = ?";
-	private static final String RETRIEVE_USER = "SELECT * FROM users WHERE username = ? and password = ?";
+	private static final String VALIDATE_EXISTING_USER = "SELECT COUNT(*) FROM users WHERE email = ? and password = ?";
+	private static final String RETRIEVE_USER = "SELECT * FROM users WHERE email = ? and password = ?";
 	public void setDataSource(DataSource dataSource) {
 		this.dataSource = dataSource;
 	}
 	@Override
-	public boolean userExists(String username, String password) {
+	public boolean userExists(String email, String password) {
 		boolean exists = false;		
 		jdbcTemplate = new JdbcTemplate(dataSource);
 		int count = jdbcTemplate.queryForObject(
-				VALIDATE_EXISTING_USER, new Object[] { username, password }, Integer.class);
+				VALIDATE_EXISTING_USER, new Object[] { email, password }, Integer.class);
 		if (count > 0) {
 			exists = true;
 		}	
@@ -28,9 +28,9 @@ public class GoalifeDaoImpl implements GoalifeDao{
 	}
 
 	@Override
-	public User retrieveUser(String username, String password) {		
+	public User retrieveUser(String email, String password) {		
 		User loggedInUser = jdbcTemplate.queryForObject(
-				RETRIEVE_USER, new Object[] { username, password },new BeanPropertyRowMapper<User>(User.class));
+				RETRIEVE_USER, new Object[] { email, password },new BeanPropertyRowMapper<User>(User.class));
 		return loggedInUser;		
 	}
 	
