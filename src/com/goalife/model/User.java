@@ -1,12 +1,5 @@
 package com.goalife.model;
 
-import java.io.Serializable;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-
 
 
 public class User{
@@ -14,24 +7,36 @@ public class User{
 	public User() {
 	}
 	
-	public User(String first_name, String last_name, String email, String password) {
+	public User(String first_name, String last_name, String email, String username,  String password) {
 		this.first_name = first_name;
 		this.last_name = last_name;
+		this.username = username;
 		this.email = email;
 		this.password = password;
 	}
 
-	private int userid;
+	private int id;
 	private String  first_name;
 	private String last_name;
 	private String email;
+	private String username;
 	private String password;
 	
-	public int getUserid() {
-		return userid;
+	
+	
+	public String getUsername() {
+		return username;
 	}
-	public void setUserid(int userid) {
-		this.userid = userid;
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
 	}
 	public String getFirst_name() {
 		return first_name;
